@@ -2,17 +2,32 @@
   <head>
     <script src="p5.js"></script>
     <script src="snake.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <style>
+      #button {
+        float:left;
+      }
+    </style>
   </head>
 
 <body>
+  <h1 id = "score">h</h1>
+  <button onClick = "REload()" id = "button"> reload </button>
   <script>
     var s;
     var scl = 20;
     var vw = window.innerWidth;
     var vh = window.innerHeight;
     var food;
+    var eat;
+    
+    function preload() {
+      soundFormats('mp3', 'ogg');
+      eat = loadSound('but.mp3');
+    }
+    
     function setup() {
-    createCanvas(vw, vh);
+    createCanvas(500, 500);
     s = new Snake();
     foodLocation();
     }
@@ -22,8 +37,12 @@
     frameRate(10);
     s.show();
     s.update();
+    s.death();
     fill(255,0,0);// this is the apple
     rect(food.x, food.y, scl, scl); // shape of the apple
+    if (s.eat(food)) {
+      foodLocation();
+    }
     
 }
 
