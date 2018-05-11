@@ -12,8 +12,8 @@ function Snake() {//this is the snake constructor
     if (d < 1) {
       this.total++;// when the distance between the snake and food is less than 1 pixel add one to total
       document.getElementById('score').innerHTML = this.total;
-      eat.soundVolume(1000.0);
-      eat.play();
+      //eat.soundVolume(1000.0);
+      //eat.play();
       return true;
     }
     else {
